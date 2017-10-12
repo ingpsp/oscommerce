@@ -27,3 +27,6 @@ osCommerce 2.3.3 ING PSP
 
 ## Changes in version 1.0.7
 + Ads Klarna test API key and IP support
+
+## Changes in version 1.0.8
++ Ads Payconiq
