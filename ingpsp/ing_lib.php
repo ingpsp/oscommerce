@@ -33,7 +33,7 @@ class Ing_Services_Lib
 
         $this->debugCurl   = true;
 
-        $this->plugin_version = 'osc-1.0.7';
+        $this->plugin_version = 'osc-1.0.8';
     }
 
     public function ingLog($contents)
@@ -260,6 +260,41 @@ class Ing_Services_Lib
         $result = $this->performApiCall("orders/", $order);
 
         return $result;
+    }
+
+    public function ingCreatePayconiqOrder($orders_id, $total, $return_url, $description, $customer)
+    {
+        $post = array(
+            "type"              => "payment",
+            "currency"          => "EUR",
+            "amount"            => 100 * round($total, 2),
+            "merchant_order_id" => (string)$orders_id,
+            'customer' => array(
+                'address'       => !empty($customer['address']) ? (string)$customer['address'] : null,
+                'address_type'  => 'customer',
+                'country'       => !empty($customer['country']) ? (string)$customer['country'] : null,
+                'email_address' => !empty($customer['email_address']) ? (string)$customer['email_address'] : null,
+                'first_name'    => !empty($customer['first_name']) ? (string)$customer['first_name'] : null,
+                'last_name'     => !empty($customer['last_name']) ? (string)$customer['last_name'] : null,
+                'postal_code'   => !empty($customer['postal_code']) ? (string)$customer['postal_code'] : null,
+                'locale'        => !empty($customer['locale']) ? (string)$customer['locale'] : null,
+            ),            
+            "description"       => $description,
+            "return_url"        => $return_url,
+            "transactions"      => array(
+                array(
+                    "payment_method" => "payconiq",
+                )
+            ),
+            'extra' => array(
+                'plugin' => $this->plugin_version,
+            ),
+        );
+
+        $order = json_encode($post);
+        $result = $this->performApiCall("orders/", $order);
+
+        return $result;
     }  
 
     public function ingCreateHomepayOrder($orders_id, $total, $return_url, $description, $customer)
@@ -467,6 +502,7 @@ class Ing_Services_Lib
             'ideal' => 'ideal',
             'bank-transfer' => 'banktransfer',
             'bancontact' => 'bancontact',
+            'payconiq' => 'payconiq',
             'homepay' => 'homepay',
             'cash-on-delivery' => 'cashondelivery',
             'credit-card' => 'creditcard',
