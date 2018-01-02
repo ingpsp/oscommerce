@@ -5,7 +5,7 @@ require_once 'ingpsp/ing_lib.php';
 require_once 'includes/application_top.php';
 
 // include the language translations
-require DIR_WS_LANGUAGES . $language  . '/modules/payment/ingpsp_ideal.php';
+require DIR_WS_LANGUAGES . $language  . '/modules/payment/ingpsp.php';
 
 $ingpsp = new Ing_Services_Lib( MODULE_PAYMENT_INGPSP_APIKEY, MODULE_PAYMENT_INGPSP_LOG_TO, MODULE_PAYMENT_INGPSP_DEBUG_MODE == 'True' );
 $status = $ingpsp->getOrderStatus( $_GET['order_id'] );

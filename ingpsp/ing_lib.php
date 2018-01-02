@@ -33,7 +33,7 @@ class Ing_Services_Lib
 
         $this->debugCurl   = true;
 
-        $this->plugin_version = 'osc-1.0.8';
+        $this->plugin_version = 'osc-1.0.9';
     }
 
     public function ingLog($contents)
@@ -116,7 +116,7 @@ class Ing_Services_Lib
         return $this->performApiCall("ideal/issuers/");
     }
 
-    public function ingCreateIdealOrder($orders_id, $total, $issuer_id, $return_url, $description, $customer)
+    public function ingCreateIdealOrder($orders_id, $total, $description, $customer, $return_url, $issuer_id )
     {
         $post = array(
             "type"              => "payment",
@@ -152,7 +152,7 @@ class Ing_Services_Lib
         return $result;
     }
 
-    public function ingCreateKlarnaOrder($orders_id, $total, $return_url, $description, $customer, $order_lines)
+    public function ingCreateKlarnaOrder($orders_id, $total, $description, $customer, $return_url, $order_lines)
     {
         $post = array(
             "type"              => "payment",
@@ -192,7 +192,7 @@ class Ing_Services_Lib
         return $result;
     }
 
-    public function ingCreateCreditCardOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreateCreditCardOrder($orders_id, $total, $description, $customer, $return_url )
     {
         $post = array(
             "type"              => "payment",
@@ -227,7 +227,7 @@ class Ing_Services_Lib
         return $result;
     }
 
-    public function ingCreateBcOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreateBcOrder($orders_id, $total, $description, $customer, $return_url )
     {
         $post = array(
             "type"              => "payment",
@@ -262,7 +262,7 @@ class Ing_Services_Lib
         return $result;
     }
 
-    public function ingCreatePayconiqOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreatePayconiqOrder($orders_id, $total, $description, $customer, $return_url)
     {
         $post = array(
             "type"              => "payment",
@@ -297,7 +297,7 @@ class Ing_Services_Lib
         return $result;
     }  
 
-    public function ingCreateHomepayOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreateHomepayOrder($orders_id, $total, $description, $customer, $return_url )
     {
         $post = array(
             "type"              => "payment",
@@ -332,7 +332,7 @@ class Ing_Services_Lib
         return $result;
     }  
 
-    public function ingCreatePaypalOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreatePaypalOrder($orders_id, $total, $description, $customer, $return_url )
     {
         $post = array(
             "type"              => "payment",
@@ -367,7 +367,7 @@ class Ing_Services_Lib
         return $result;
     }        
 
-    public function ingCreateSofortOrder($orders_id, $total, $return_url, $description, $customer)
+    public function ingCreateSofortOrder($orders_id, $total, $description, $customer, $return_url )
     {
         $post = array(
             "type"              => "payment",
