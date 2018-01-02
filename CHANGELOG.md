@@ -30,3 +30,6 @@ osCommerce 2.3.3 ING PSP
 
 ## Changes in version 1.0.8
 + Ads Payconiq
+
+## Changes in version 1.0.9
++ Standardizing parameters

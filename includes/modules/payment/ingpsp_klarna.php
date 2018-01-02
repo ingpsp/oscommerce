@@ -188,7 +188,12 @@ class ingpsp_klarna {
     else
       $customer['locale'] = $language_row['code'] . "_" . strtoupper($language_row['code']);
 
-    $ingpsp_order = $this->ingpsp->ingCreateKlarnaOrder( $insert_id, $order->info['total'], tep_href_link( "ext/modules/payment/ingpsp/redir.php", '', 'SSL' ), STORE_NAME . " " . $insert_id, $customer, $order_lines );
+    $ingpsp_order = $this->ingpsp->ingCreateKlarnaOrder( $insert_id, 
+                                                         $order->info['total'], 
+                                                         STORE_NAME . " " . $insert_id, 
+                                                         $customer, 
+                                                         tep_href_link( "ext/modules/payment/ingpsp/redir.php", '', 'SSL' ), 
+                                                         $order_lines );
 
     // change order status to value selected by merchant
     tep_db_query( "update ". TABLE_ORDERS. " set orders_status = " . intval( MODULE_PAYMENT_INGPSP_NEW_STATUS_ID ) . ", ingpsp_order_id = '" . $ingpsp_order['id']  . "' where orders_id = ". intval( $insert_id ) );

@@ -141,7 +141,11 @@ class ingpsp_cashondelivery {
     if ($language_row['code'] == 'en')
       $customer['locale'] = 'en_GB';    
 
-    $ingpsp_order = $this->ingpsp->ingCreateCashondeliveryOrder( $insert_id, $order->info['total'], STORE_NAME . " " . $insert_id, $customer );
+    $ingpsp_order = $this->ingpsp->ingCreateCashondeliveryOrder( $insert_id, 
+                                                                $order->info['total'], 
+                                                                STORE_NAME . " " . $insert_id, 
+                                                                $customer 
+                                                                );
 
     // change order status to value selected by merchant
     tep_db_query( "update ". TABLE_ORDERS. " set orders_status = " . intval( MODULE_PAYMENT_INGPSP_NEW_STATUS_ID ) . ", ingpsp_order_id = '" . $ingpsp_order['id']  . "' where orders_id = ". intval( $insert_id ) );
